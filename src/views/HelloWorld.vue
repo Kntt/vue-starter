@@ -1,10 +1,9 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <m-title :text="msg"/>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><img src="../assets/logo.png"></li>    
       <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
       <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
       <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
@@ -22,8 +21,12 @@
 </template>
 
 <script>
+import mTitle from '@/components/Title'
 export default {
   name: 'HelloWorld',
+  components: {
+    mTitle
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
