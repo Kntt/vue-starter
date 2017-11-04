@@ -6,8 +6,10 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
 
+const fs = require('fs')
 const opn = require('opn')
 const path = require('path')
+const argv = require('optimist').argv;
 const express = require('express')
 const webpack = require('webpack')
 const proxyMiddleware = require('http-proxy-middleware')
@@ -50,16 +52,34 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 app.use(hotMiddleware)
 
 // proxy api requests
-Object.keys(proxyTable).forEach(function (context) {
-  let options = proxyTable[context]
-  if (typeof options === 'string') {
-    options = { target: options }
-  }
-  app.use(proxyMiddleware(options.filter || context, options))
-})
+// Object.keys(proxyTable).forEach(function (context) {
+//   let options = proxyTable[context]
+//   if (typeof options === 'string') {
+//     options = { target: options }
+//   }
+//   app.use(proxyMiddleware(options.filter || context, options))
+// })
+
+// mock/proxy api requests
+const setMock = mockdir => {
+  const files = fs.readdirSync(mockdir)
+  files.map(file => {
+    fs.stat(`${mockdir}/${file}`, (err, stats) => {
+      if (stats.isFile()) {
+        let mock = require(`${mockdir}/${file}`)
+        app.use(mock.api, argv.proxy ? proxyMiddleware({target: 'http://' + argv.proxy}) : mock.response)
+      } else {
+        setMock(`${mockdir}/${file}`)
+      }
+    })
+  })
+}
+setMock(config.dev.mockDir)
 
 // handle fallback for HTML5 history API
-app.use(require('connect-history-api-fallback')())
+app.use(require('connect-history-api-fallback')({
+  index: '/index.html'
+}))
 
 // serve webpack bundle output
 app.use(devMiddleware)
