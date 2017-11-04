@@ -8,6 +8,7 @@
 
 ## 目录结构
 
+```
 ├── README.md                       项目介绍
 ├── build                           webpack构建配置（修改了dev-server文件， 增加mock配置）
 ├── config                          构建配置参数 （修改了build参数， 不同的版本会构建在```dist/{version}```目录， 保留最近的5个版本）
@@ -32,6 +33,7 @@
 │       └── specs                   测试用例文件夹
 ├── version.js                      项目版本管理脚本， 运行后小版本自增
 └── yarn.lock
+```
 
 ## 环境安装
 
