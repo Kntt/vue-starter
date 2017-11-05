@@ -7,6 +7,20 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+// 输入框在虚拟键盘弹出时，自动滚动到可见位置
+document.body.addEventListener('click', function (event) {
+  var element = event.target
+  var tags = {
+    'INPUT': 1,
+    'TEXTAREA': 1
+  }
+  if ((element.tagName in tags)) {
+    setTimeout(function () {
+      element.scrollIntoViewIfNeeded()
+    }, 400)
+  }
+}, false)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

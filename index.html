@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>vue-starter</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand" />
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>Vue starter</title>
+    <script src="static/js/flexible.js"></script>
   </head>
   <body>
     <div id="app"></div>
+    <!-- FastClick -->
+    <script src="//as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <script>
+      if ('addEventListener' in document) {
+        window.addEventListener('load', function() {
+          FastClick.attach(document.body);
+        }, false);
+      }
+    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>
