@@ -3,18 +3,19 @@
     <mt-header fixed>
       <mt-button icon="add" slot="right"></mt-button>
     </mt-header>
-    <div class="page">
+    <container>
       我的
-    </div>
+    </container>
   </div>
 </template>
 
 <script>
 import mtHeader from '@/components/header'
+import container from '@/components/container'
 export default {
   name: 'user',
   components: {
-    mtHeader
+    mtHeader, container
   }
 }
 </script>
