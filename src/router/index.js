@@ -11,12 +11,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/hello',
+      redirect: '/office',
       name: 'home',
       component: Home,
       children: [
         {
-          path: 'hello',
+          path: 'office',
           name: 'Dashboard',
           component: HelloWorld
         }
