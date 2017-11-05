@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    <mt-header title="小凡" fixed>
+  <div>
+    <mt-header title="工作" fixed>
       <mt-button icon="add" slot="right"></mt-button>
     </mt-header>
   </div>
@@ -9,7 +9,7 @@
 <script>
 import mtHeader from '@/components/header'
 export default {
-  name: 'HelloWorld',
+  name: 'office',
   components: {
     mtHeader
   }

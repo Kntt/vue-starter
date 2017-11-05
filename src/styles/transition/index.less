@@ -5,7 +5,7 @@
   &-leave-to {
     transform: translate3d(-20%, 0, 0);
   }
-  &-enter-active, &-leave-active  {
+  &-enter-active, &-leave-active {
     transition: transform .4s ease;
   }
 }
@@ -21,7 +21,17 @@
   &-leave-active {
     z-index: 2;
   }
-  &-enter-active, &-leave-active  {
+  &-enter-active, &-leave-active {
     transition: transform .4s ease;
+  }
+}
+
+// Fade Transian Effect
+.fade {
+  &-enter, &-leave-to {
+    opacity: 0
+  }
+  &-enter-active, &-leave-active {
+    transition: opacity .5s
   }
 }

@@ -1,29 +1,27 @@
 <template>
   <div class="home">
-    <div class="home-page">
-      <transition name="fade">
-        <router-view></router-view>
-      </transition>
-    </div>
+    <transition name="fade">
+      <router-view class="animated"></router-view>
+    </transition>
     <div class="home-tab-bar">
-      <mt-tabbar v-model="selected">
+      <mt-tabbar v-model="active">
         <mt-tab-item id="office">
-          <img v-if="selected === 'office'" slot="icon" src="../assets/logo.png">
+          <img v-if="active === 'office'" slot="icon" src="../assets/logo.png">
           <img v-else slot="icon" src="../assets/100x100.png">
           工作
         </mt-tab-item>
-        <mt-tab-item id="connects">
-          <img v-if="selected === 'connects'" slot="icon" src="../assets/logo.png">
+        <mt-tab-item id="contacts">
+          <img v-if="active === 'contacts'" slot="icon" src="../assets/logo.png">
           <img v-else slot="icon" src="../assets/100x100.png">
           通讯录
         </mt-tab-item>
         <mt-tab-item id="message">
-          <img v-if="selected === 'message'" slot="icon" src="../assets/logo.png">
+          <img v-if="active === 'message'" slot="icon" src="../assets/logo.png">
           <img v-else slot="icon" src="../assets/100x100.png">
           消息
         </mt-tab-item>
         <mt-tab-item id="user">
-          <img v-if="selected === 'user'" slot="icon" src="../assets/logo.png">
+          <img v-if="active === 'user'" slot="icon" src="../assets/logo.png">
           <img v-else slot="icon" src="../assets/100x100.png">
           我的
         </mt-tab-item>
@@ -36,7 +34,12 @@ export default {
   name: 'home',
   data () {
     return {
-      selected: 'office'
+      active: 'office'
+    }
+  },
+  watch: {
+    active (tab) {
+      this.$router.replace(`/${tab}`)
     }
   }
 }
@@ -47,9 +50,6 @@ export default {
     display: flex;
     height: 100%;
     flex-direction: column;
-    &-page {
-      flex: 1;
-    }
     &-tab-bar {
       height: 55px; /*no*/
     }
