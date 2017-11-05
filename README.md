@@ -5,6 +5,7 @@
 - 增加版本控制脚本```version.js```，控制发布版本
 - 增加mock配置， 方便前后端分离开发
 - 使用```husky```，处理precommit，保证提交前代码lint，eslint可以根据个人或团队规范自行制定
+- 移动端，扩展了flexible.js, 配合px2rem 使用rem适配[需要请查看mobile-app分支]
 
 ## 目录结构
 
@@ -43,13 +44,16 @@
 
 ## 快速开始
 
+```bash
     git clone https://github.com/hanan198501/vue-spa-template.git 
     cd vue-spa-template
     cnpm install
     npm run dev
+```
 
 ## 命令列表：
 
+```bash
     #开启本地开发服务器，监控项目文件的变化，实时构建并自动刷新浏览器，浏览器访问 http://localhost:8081
     npm run dev
 
@@ -64,6 +68,7 @@
 
     #运行单元测试
     npm run unit
+```
 
 ## 接口 mock
 
@@ -71,6 +76,7 @@
 项目开发服务器基于 express 搭建的，我们已经在 dev-server 中添加了接口 mock 功能。
 开发时，接口的 mock 数据统一放在 mock 目录下，每个文件内如下：
 
+```javascript
     module.exports = {
       // 接口地址
       api: '/api/hello',
@@ -84,6 +90,7 @@
         });
       }
     }
+```
 
 ## 单元测试
 
