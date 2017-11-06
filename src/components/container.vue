@@ -31,11 +31,6 @@
         type: Boolean,
         default: false
       }
-    },
-    computed: {
-      ios () {
-        return this.$deviceInfo.ios
-      }
     }
   }
 </script>
