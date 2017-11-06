@@ -21,22 +21,34 @@ export default new Router({
         {
           path: 'office',
           name: 'officeIndex',
-          component: office
+          component: office,
+          meta: {
+            index: 0
+          }
         },
         {
           path: 'contacts',
           name: 'contactsIndex',
-          component: contacts
+          component: contacts,
+          meta: {
+            index: 1
+          }
         },
         {
           path: 'message',
           name: 'messageIndex',
-          component: message
+          component: message,
+          meta: {
+            index: 2
+          }
         },
         {
           path: 'user',
           name: 'userIndex',
-          component: user
+          component: user,
+          meta: {
+            index: 3
+          }
         }
       ]
     }
