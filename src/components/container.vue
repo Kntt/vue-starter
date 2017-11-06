@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :class="{'scroll': scroll}" :style="{'background-color': bg, 'margin-top': ios ? '64px' : '44px'}">
+  <div class="container" :class="{'scroll': scroll}" :style="{'background-color': bg}">
     <slot></slot>
   </div>
 </template>
