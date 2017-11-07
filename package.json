@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
+    "better-scroll": "^1.4.1",
     "mint-ui": "^2.2.9",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
