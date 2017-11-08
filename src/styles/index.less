@@ -35,7 +35,12 @@ html, body {
   font-size: 18px; /*no*/
   height: 44px; /*no*/
   &.is-ios{
-    padding-top: 20px; /*no*/
     height: 64px; /*no*/
+    /* Status bar height on iOS 10 */
+    padding-top: 20px; /*no*/
+    /* Status bar height on iOS 11.0 */
+    padding-top: constant(safe-area-inset-top);
+    /* Status bar height on iOS 11+ */
+    padding-top: env(safe-area-inset-top);
   }
 }
