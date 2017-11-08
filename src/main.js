@@ -6,8 +6,13 @@ import router from './router'
 import store from './store'
 import * as utils from './utils/tool'
 import './mintUI'
+
 /* 全局样式 定义主题 */
 import './styles/index.less'
+
+/* 自定义组件 */
+import components from './components'
+Vue.use(components)
 
 Vue.config.productionTip = false
 
