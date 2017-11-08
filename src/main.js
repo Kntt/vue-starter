@@ -5,14 +5,9 @@ import App from './App'
 import router from './router'
 import store from './store'
 import * as utils from './utils/tool'
-// mint-ui
-import Mint from 'mint-ui'
-import 'mint-ui/lib/style.css'
-
-// 全局样式
+import './mintUI'
+/* 全局样式 定义主题 */
 import './styles/index.less'
-
-Vue.use(Mint)
 
 Vue.config.productionTip = false
 
