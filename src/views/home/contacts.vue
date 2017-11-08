@@ -7,12 +7,8 @@
 </template>
 
 <script>
-import mtHeader from '@/components/header'
 export default {
-  name: 'contacts',
-  components: {
-    mtHeader
-  }
+  name: 'contacts'
 }
 </script>
 

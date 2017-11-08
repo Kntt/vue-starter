@@ -17,13 +17,8 @@
 </template>
 
 <script>
-import mtHeader from '@/components/header'
-import container from '@/components/container'
 export default {
   name: 'user',
-  components: {
-    mtHeader, container
-  },
   data () {
     return {
       list: [],
