@@ -3,6 +3,23 @@
     <slot></slot>
   </div>
 </template>
+
+<script>
+  export default{
+    name: 'container',
+    props: {
+      bg: { // 背景色
+        type: String,
+        default: '#F9F9F9'
+      },
+      scroll: { // 溢出滚动
+        type: Boolean,
+        default: false
+      }
+    }
+  }
+</script>
+
 <style lang="less" scoped>
   .container {
     width: 100%;
@@ -19,18 +36,3 @@
     }
   }
 </style>
-<script>
-  export default{
-    name: 'container',
-    props: {
-      bg: { // 背景色
-        type: String,
-        default: '#F9F9F9'
-      },
-      scroll: { // 溢出滚动
-        type: Boolean,
-        default: false
-      }
-    }
-  }
-</script>
