@@ -1,8 +1,17 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
-
+const px2rem = require('postcss-px2rem-exclude')
+const autoprefixer = require('autoprefixer')
 module.exports = {
-  "plugins": {
-    // to edit target browsers: use "browserslist" field in package.json
-    "autoprefixer": {}
-  }
+  "plugins": [
+    px2rem({
+      remUnit: 75,
+      exclude: /node_modules/
+    }),
+    autoprefixer({
+      browsers: [
+        'iOS >= 8',
+        'Android >= 4'
+      ]
+    })
+  ]
 }
