@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <transition :name="transitionName">
+    <transition name="fade">
       <router-view/>
     </transition>
     <mt-tabbar v-model="active">
@@ -32,20 +32,12 @@ export default {
   name: 'home',
   data () {
     return {
-      active: 'office',
-      transitionName: ''
+      active: 'office'
     }
   },
   watch: {
     active (tab) {
       this.$router.replace(`/${tab}`)
-    },
-    $route (to, from) {
-      if (to.meta.index > from.meta.index) {
-        this.transitionName = 'turn-on'
-      } else {
-        this.transitionName = 'turn-off'
-      }
     }
   }
 }
