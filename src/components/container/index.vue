@@ -275,13 +275,13 @@
     }
     &-content {
       position: relative;
-      z-index: 1;
+      // z-index: 1;
       background-color: #FFF;
     }
     &-item {
       height: 60px;
       line-height: 60px;
-      font-size: 18px;
+      font-size: 18px; /*no*/
       padding-left: 20px;
     }
   }

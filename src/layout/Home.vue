@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <transition name="fade">
-      <router-view/>
+      <router-view class="main-content" :class="{'is-ios': ios}"/>
     </transition>
     <mt-tabbar v-model="active">
       <mt-tab-item id="office">
@@ -35,6 +35,11 @@ export default {
       active: 'office'
     }
   },
+  computed: {
+    ios () {
+      return this.$deviceInfo.ios
+    }
+  },
   watch: {
     active (tab) {
       this.$router.replace(`/${tab}`)
@@ -46,5 +51,13 @@ export default {
 <style lang="less" scoped>
   .main {
     height: 100%;
+    &-content {
+      height: 100%;
+      margin-top: 44px; /*no*/
+      margin-bottom: 60px; /*no*/
+      &.is-ios {
+        margin-top: 64px; /*no*/
+      }
+    }
   }
 </style>
