@@ -52,3 +52,11 @@ export const getDeviceInfo = () => {
 
   return device
 }
+export const getRect = (el) => {
+  return {
+    top: el.offsetTop,
+    left: el.offsetLeft,
+    width: el.offsetWidth,
+    height: el.offsetHeight
+  }
+}
