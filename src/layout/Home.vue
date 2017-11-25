@@ -28,6 +28,9 @@
   </div>
 </template>
 <script>
+/* ===============================
+  * Homelayot的组件采用fade切换动画
+  * ============================== */
 export default {
   name: 'Home',
   data () {
