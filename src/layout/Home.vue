@@ -1,8 +1,8 @@
 <template>
-  <div class="main" :class="{'is-ios': ios}">
-    <transition name="fade">
-      <router-view class="main-content"/>
-    </transition>
+  <div>
+    <div class="home" :class="{'is-ios': ios}">
+      <router-view class="home-container"/>
+    </div>
     <mt-tabbar v-model="active">
       <mt-tab-item id="office">
         <img v-if="active === 'office'" slot="icon" src="../assets/logo.png">
@@ -28,9 +28,7 @@
   </div>
 </template>
 <script>
-/* ===============================
-  * Homelayot的组件采用fade切换动画
-  * ============================== */
+
 export default {
   name: 'Home',
   data () {
@@ -52,7 +50,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .main {
+  .home {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -62,7 +65,7 @@ export default {
     &.is-ios {
       border-top: 64px solid transparent; /*no*/
     }
-    &-content {
+    &-container {
       box-sizing: border-box;
       height: 100%;
       overflow: hidden;
