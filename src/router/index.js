@@ -5,7 +5,7 @@ import office from '@/views/home/office'
 import contacts from '@/views/home/contacts'
 import message from '@/views/home/message'
 import user from '@/views/home/user'
-
+import visa from '@/views/pages/visa'
 Vue.use(Router)
 
 export default new Router({
@@ -51,6 +51,11 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: '/visa',
+      name: 'visaIndex',
+      component: visa
     }
   ]
 })
