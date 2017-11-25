@@ -1,7 +1,7 @@
 <template>
-  <div class="main">
+  <div class="main" :class="{'is-ios': ios}">
     <transition name="fade">
-      <router-view class="main-content" :class="{'is-ios': ios}"/>
+      <router-view class="main-content"/>
     </transition>
     <mt-tabbar v-model="active">
       <mt-tab-item id="office">
@@ -50,14 +50,19 @@ export default {
 
 <style lang="less" scoped>
   .main {
+    box-sizing: border-box;
+    width: 100%;
     height: 100%;
+    border-top: 44px solid transparent; /*no*/
+    border-bottom: 60px solid transparent; /*no*/
+    overflow: hidden;
+    &.is-ios {
+      border-top: 64px solid transparent; /*no*/
+    }
     &-content {
+      box-sizing: border-box;
       height: 100%;
-      margin-top: 44px; /*no*/
-      margin-bottom: 60px; /*no*/
-      &.is-ios {
-        margin-top: 64px; /*no*/
-      }
+      overflow: hidden;
     }
   }
 </style>
