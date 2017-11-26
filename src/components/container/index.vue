@@ -279,10 +279,10 @@
       background-color: #FFF;
     }
     &-item {
-      height: 60px;
-      line-height: 60px;
+      height: 60px; /*no*/
+      line-height: 60px; /*no*/
       font-size: 18px; /*no*/
-      padding-left: 20px;
+      padding-left: 20px; /*no*/
     }
   }
   .pulldown-wrapper  {
