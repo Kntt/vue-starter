@@ -4,7 +4,9 @@
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
     <container :data="list">
-
+      <ul ref="list" class="scroll-list">
+        <li class="scroll-item border-bottom-1px" v-for="item in list">{{item}}</li>
+      </ul>
     </container>
   </div>
 </template>

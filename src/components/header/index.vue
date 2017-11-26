@@ -1,6 +1,6 @@
 <template>
   <header
-    class="mint-header"
+    class="mint-header border-bottom-1px"
     :class="{ 'is-fixed': fixed, 'is-ios': ios }">
     <div class="mint-header-button is-left">
       <slot name="left"></slot>

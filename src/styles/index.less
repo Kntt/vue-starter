@@ -1,4 +1,6 @@
 @import './reset.less';
+@import './theme/default.less'; // 主题文件
+@import './base.less';
 @import './transition/index.less';
 
 html, body {
@@ -13,11 +15,11 @@ html, body {
 
 // mint-tabbar
 .mint-tabbar {
-  background-color: #fff;
+  background-color: @tabbar-bgc;
   background-image: none;
   > .mint-tab-item.is-selected {
-    background-color: #fff;
-    color: #0082e2;
+    background-color: @tabbar-bgc-active;
+    color: @color-tabbar-active;
   }
 }
 .mint-tab-item {
@@ -34,6 +36,8 @@ html, body {
 .mint-header {
   font-size: 18px; /*no*/
   height: 44px; /*no*/
+  color: @color-text;
+  background-color: @header-bgc;
   &.is-ios{
     height: 64px; /*no*/
     /* Status bar height on iOS 10 */
