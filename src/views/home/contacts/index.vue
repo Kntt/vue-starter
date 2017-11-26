@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import contactList from './contacts-list'
 function creatListView (data) {
   return {
@@ -15,14 +16,31 @@ function creatListView (data) {
 
 export default {
   name: 'contacts',
-  data () {
-    return {
-      list: ['前站业务线', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item']
-    }
+  // data () {
+  //   return {
+  //     data: ['前站业务线', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item']
+  //   }
+  // },
+  mounted () {
+    this.getContacts()
+  },
+  methods: {
+    ...mapActions('contacts', ['getContacts'])
   },
   computed: {
+    ...mapState('contacts', ['list', 'currentNode']),
     currentView () {
-      return creatListView(this.list)
+      return creatListView(this.data)
+    },
+    data () {
+      if (this.currentNode) {
+        let arr = this.list.filter((v, k) => {
+          return k === this.currentNode
+        })
+        return arr[0].children
+      } else {
+        return this.list
+      }
     }
   }
 }
