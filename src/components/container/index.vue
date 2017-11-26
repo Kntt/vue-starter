@@ -43,7 +43,7 @@
   import BScroll from 'better-scroll'
   import Loading from '../loading'
   import Bubble from '../bubble'
-  import { getRect } from '../../utils/tool'
+  import { getRect } from '../common/js/dom'
 
   const COMPONENT_NAME = 'container'
   const DIRECTION_H = 'horizontal'
