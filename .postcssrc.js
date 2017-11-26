@@ -4,7 +4,7 @@ const autoprefixer = require('autoprefixer')
 module.exports = {
   "plugins": [
     px2rem({
-      remUnit: 75,
+      remUnit: 37.5,
       exclude: /node_modules/
     }),
     autoprefixer({
