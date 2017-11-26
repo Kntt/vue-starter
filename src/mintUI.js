@@ -2,7 +2,13 @@
 import Vue from 'vue'
 import { Header, Button, Tabbar, TabItem } from 'mint-ui'
 
-Vue.component(Header.name, Header)
-Vue.component(Button.name, Button)
-Vue.component(Tabbar.name, Tabbar)
-Vue.component(TabItem.name, TabItem)
+let components = [
+  Header,
+  Button,
+  Tabbar,
+  TabItem
+]
+
+components.forEach(component => {
+  Vue.component(component.name, component)
+})
