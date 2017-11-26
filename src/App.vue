@@ -12,7 +12,7 @@ export default {
   data () {
     return {
       prevRoutes: [],
-      transitionName: 'turn-on'
+      transitionName: 'slide-in'
     }
   },
   watch: {
@@ -29,11 +29,11 @@ export default {
     $route (to, from) {
       if (!(to.meta.noPageAnimation || from.meta.noPageAnimation)) {
         if (to.name === this.prevRoutes[this.prevRoutes.length - 1]) {
-          this.transitionName = 'turn-off'
+          this.transitionName = 'slide-out'
           this.prevRoutes.pop()
         } else {
           if (from.name) {
-            this.transitionName = 'turn-on'
+            this.transitionName = 'slide-in'
             this.prevRoutes.push(from.name)
           }
         }
