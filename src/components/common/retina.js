@@ -1,4 +1,4 @@
-(function (win, lib) {
+export default (win = window) => {
   const doc = win.document
   const docEl = doc.documentElement
   let metaEl = doc.querySelector('meta[name="viewport"]')
@@ -6,11 +6,10 @@
   let dpr = 0
   let scale = 0
   let tid
-  const flexible = lib.flexible || (lib.flexible = {})
 
   if (metaEl) {
     console.warn('将根据已有的meta标签来设置缩放比例')
-    const match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/)
+    const match = metaEl.getAttribute('content').match(/initial-scale=([\d.]+)/)
     if (match) {
       scale = parseFloat(match[1])
       dpr = parseInt(1 / scale)
@@ -18,8 +17,8 @@
   } else if (flexibleEl) {
     const content = flexibleEl.getAttribute('content')
     if (content) {
-      const initialDpr = content.match(/initial\-dpr=([\d\.]+)/)
-      const maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/)
+      const initialDpr = content.match(/initial-dpr=([\d.]+)/)
+      const maximumDpr = content.match(/maximum-dpr=([\d.]+)/)
       if (initialDpr) {
         dpr = parseFloat(initialDpr[1])
         scale = parseFloat((1 / dpr).toFixed(2))
@@ -32,7 +31,6 @@
   }
 
   if (!dpr && !scale) {
-    const isAndroid = win.navigator.appVersion.match(/android/gi)
     const isIPhone = win.navigator.appVersion.match(/iphone/gi)
     const devicePixelRatio = win.devicePixelRatio
     if (isIPhone) {
@@ -65,14 +63,13 @@
     }
   }
 
-  function refreshRem() {
+  function refreshRem () {
     let width = docEl.getBoundingClientRect().width
     if (width / dpr > 540) {
       width = 540 * dpr
     }
     const rem = width / 10
     docEl.style.fontSize = `${rem}px`
-    flexible.rem = win.rem = rem
   }
 
   win.addEventListener('resize', () => {
@@ -95,21 +92,4 @@
   }
 
   refreshRem()
-
-  flexible.dpr = win.dpr = dpr
-  flexible.refreshRem = refreshRem
-  flexible.rem2px = function (d) {
-    let val = parseFloat(d) * this.rem
-    if (typeof d === 'string' && d.match(/rem$/)) {
-      val += 'px'
-    }
-    return val
-  }
-  flexible.px2rem = function (d) {
-    let val = parseFloat(d) / this.rem
-    if (typeof d === 'string' && d.match(/px$/)) {
-      val += 'rem'
-    }
-    return val
-  }
-}(window, window.lib || (window.lib = {})))
+}
