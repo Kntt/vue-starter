@@ -1,14 +1,15 @@
 <template>
   <div>
     <mt-header title="通讯录" fixed>
+      <mt-button v-if="currentNode" @click="back" icon="back" slot="left"></mt-button>
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
     <container :data="data">
       <ul class="contacts-list">
-        <li @click="itemClick(item)" class="contacts-item border-bottom-1px" v-for="item in data">
-          <img src="../../../assets/100x100.png" alt="" class="contacts-item-icon">
-          <p class="contacts-item-text">{{item}}</p>
-          <p class="contacts-item-tip">{{item}}</p>
+        <li @click="itemClick(item, index)" class="contacts-item border-bottom-1px" v-for="item, index in data">
+          <img :src="item.icon" alt="" class="contacts-item-icon">
+          <p class="contacts-item-text">{{item.name}}</p>
+          <p class="contacts-item-tip">{{item.conut}}</p>
         </li>
       </ul>
     </container>
@@ -16,6 +17,7 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex'
 export default {
   name: 'contacts-list',
   props: {
@@ -26,6 +28,20 @@ export default {
         return []
       }
     }
+  },
+  methods: {
+    ...mapMutations('contacts', ['UPDATE_CURRENTNODE']),
+    itemClick (val, index) {
+      if (val.children && val.children.length) {
+        this.UPDATE_CURRENTNODE({val: index})
+      }
+    },
+    back () {
+      this.UPDATE_CURRENTNODE({val: ''})
+    }
+  },
+  computed: {
+    ...mapState('contacts', ['currentNode'])
   }
 }
 </script>
