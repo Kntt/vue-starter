@@ -2,11 +2,15 @@ import retina from './common/retina'
 import header from './header'
 import container from './container'
 import slide from './slide'
+import popup from './popup'
+import toast from './toast'
 
 const components = [
   header,
   container,
-  slide
+  slide,
+  popup,
+  toast
 ]
 
 const install = function (Vue) {

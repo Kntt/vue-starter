@@ -17,6 +17,7 @@
     <router-link to="/visa">
       <h3>visa</h3>
     </router-link>
+    <mt-button type="primary" @click="showToast">Toast</mt-button>
   </div>
 </template>
 
@@ -52,6 +53,15 @@ export default {
           id: 11287
         }
       ]
+    }
+  },
+  methods: {
+    showToast () {
+      const toast = this.$createToast({
+        time: 0,
+        txt: 'Toast time 1s'
+      })
+      toast.show()
     }
   }
 }
