@@ -14,7 +14,7 @@ const install = function (Vue) {
     return
   }
   components.forEach(component => {
-    Vue.component(component.name, component)
+    component.install(Vue)
   })
   retina()
 }
