@@ -41,7 +41,7 @@
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
-  import Loading from '../loading'
+  import Loading from '../loading/loading.vue'
   import Bubble from '../bubble'
   import { getRect } from '../common/js/dom'
 
