@@ -58,7 +58,7 @@ export default {
   methods: {
     showToast () {
       const toast = this.$createToast({
-        time: 0,
+        time: 3000,
         txt: 'Toast time 1s'
       })
       toast.show()
