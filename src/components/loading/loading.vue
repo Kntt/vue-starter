@@ -37,7 +37,7 @@
   .loop(@counter) when (@counter > 0) {
     .loop((@counter - 1));
     &:nth-child(@{counter}) {
-      animation-delay: ((@counter - 1) / 12)s;
+      animation-delay: (@counter - 1) / 12s;
       transform: rotate(30deg * (@counter - 6)) translateY(-150%);
     }
   }
