@@ -1,20 +1,19 @@
 <template>
   <div class="slide" ref="slide">
     <div class="slide-group" ref="slideGroup">
-      <slot>
-      </slot>
+      <slot></slot>
     </div>
-    <div v-if="showDot" class="dots">
-      <span class="dot" :class="{active: currentPageIndex === index }" v-for="(item, index) in dots"></span>
+    <div v-if="showDot" class="slide-dots">
+      <span :class="{active: currentPageIndex === index}" v-for="(item, index) in dots"></span>
     </div>
   </div>
 </template>
 
-<script type="text/ecmascript-6">
-  import { addClass } from '../common/js/dom'
+<script>
   import BScroll from 'better-scroll'
 
   const COMPONENT_NAME = 'slide'
+  const EVENT_CHANGE = 'change'
 
   export default {
     name: COMPONENT_NAME,
@@ -31,84 +30,29 @@
         type: Number,
         default: 4000
       },
-      showDot: {
-        type: Boolean,
-        default: true
+      threshold: {
+        type: Number,
+        default: 0.3
       },
-      click: {
+      speed: {
+        type: Number,
+        default: 400
+      },
+      showDot: {
         type: Boolean,
         default: true
       }
     },
     data () {
       return {
-        dots: [],
+        dots: 0,
         currentPageIndex: 0
       }
-    },
-    mounted () {
-      setTimeout(() => {
-        this._setSlideWidth()
-        if (this.showDot) {
-          this._initDots()
-        }
-        this._initSlide()
-
-        if (this.autoPlay) {
-          this._play()
-        }
-      }, 20)
-
-      window.addEventListener('resize', () => {
-        if (!this.slide || !this.slide.enabled) {
-          return
-        }
-        clearTimeout(this.resizeTimer)
-        this.resizeTimer = setTimeout(() => {
-          if (this.slide.isInTransition) {
-            this._onScrollEnd()
-          } else {
-            if (this.autoPlay) {
-              this._play()
-            }
-          }
-          this.refresh()
-        }, 60)
-      })
-    },
-    activated () {
-      if (!this.slide) {
-        return
-      }
-      this.slide.enable()
-      let pageIndex = this.slide.getCurrentPage().pageX
-      if (pageIndex > this.dots.length) {
-        pageIndex = pageIndex % this.dots.length
-      }
-      this.slide.goToPage(pageIndex, 0, 0)
-      if (this.loop) {
-        pageIndex -= 1
-      }
-      this.currentPageIndex = pageIndex
-      if (this.autoPlay) {
-        this._play()
-      }
-    },
-    deactivated () {
-      this.slide.disable()
-      clearTimeout(this.timer)
-    },
-    beforeDestroy () {
-      this.slide.disable()
-      clearTimeout(this.timer)
     },
     methods: {
       refresh () {
         this._setSlideWidth(true)
         this.slide.refresh()
-      },
-      next () {
-        this.slide.next()
       },
       _setSlideWidth (isResize) {
         this.children = this.$refs.slideGroup.children
@@ -117,8 +61,6 @@
         let slideWidth = this.$refs.slide.clientWidth
         for (let i = 0; i < this.children.length; i++) {
           let child = this.children[i]
-          addClass(child, 'slide-item')
-
           child.style.width = slideWidth + 'px'
           width += slideWidth
         }
@@ -130,13 +72,14 @@
       _initSlide () {
         this.slide = new BScroll(this.$refs.slide, {
           scrollX: true,
+          scrollY: false,
           momentum: false,
           snap: {
             loop: this.loop,
-            threshold: 0.3,
-            speed: 400
+            threshold: this.threshold,
+            speed: this.speed
           },
-          click: this.click
+          click: true
         })
 
         this.slide.on('scrollEnd', this._onScrollEnd)
@@ -149,7 +92,7 @@
 
         this.slide.on('beforeScrollStart', () => {
           if (this.autoPlay) {
-            clearTimeout(this.timer)
+            clearTimeout(this._timer)
           }
         })
       },
@@ -158,7 +101,11 @@
         if (this.loop) {
           pageIndex -= 1
         }
-        this.currentPageIndex = pageIndex
+        if (this.currentPageIndex !== pageIndex) {
+          this.currentPageIndex = pageIndex
+          this.$emit(EVENT_CHANGE, this.currentPageIndex)
+        }
+
         if (this.autoPlay) {
           this._play()
         }
@@ -167,11 +114,67 @@
         this.dots = new Array(this.children.length)
       },
       _play () {
-        let pageIndex = this.slide.getCurrentPage().pageX + 1
-        clearTimeout(this.timer)
-        this.timer = setTimeout(() => {
+        let pageIndex = this.currentPageIndex + 1
+        if (this.loop) {
+          pageIndex += 1
+        }
+        clearTimeout(this._timer)
+        this._timer = setTimeout(() => {
           this.slide.goToPage(pageIndex, 0, 400)
         }, this.interval)
+      },
+      _deactivated () {
+        clearTimeout(this._timer)
+        clearTimeout(this._resizeTimer)
+        window.removeEventListener('resize', this._resizeHandler)
+      },
+      _resizeHandler () {
+        if (!this.slide) {
+          return
+        }
+        clearTimeout(this._resizeTimer)
+        this._resizeTimer = setTimeout(() => {
+          if (this.slide.isInTransition) {
+            this._onScrollEnd()
+          } else {
+            if (this.autoPlay) {
+              this._play()
+            }
+          }
+          this.refresh()
+        }, 60)
+      }
+    },
+    mounted () {
+      this.$nextTick(() => {
+        if (this._isDestroyed) {
+          return
+        }
+        this._setSlideWidth()
+        this._initDots()
+        this._initSlide()
+
+        if (this.autoPlay) {
+          this._play()
+        }
+      })
+
+      window.addEventListener('resize', this._resizeHandler)
+    },
+    activated () {
+      if (this.autoPlay) {
+        this._play()
+      }
+      window.addEventListener('resize', this._resizeHandler)
+    },
+    deactivated () {
+      this._deactivated()
+    },
+    destroyed () {
+      this._deactivated()
+      if (this.slide) {
+        this.slide.destroy()
+        this.slide = null
       }
     }
   }
@@ -179,8 +182,8 @@
 
 <style lang="less">
   .slide {
-    min-height: 1px;/*no*/
-    .slide-group {
+    min-height: 1px;
+    &-group {
       position: relative;
       overflow: hidden;
       white-space: nowrap;
@@ -201,7 +204,7 @@
         }
       }
     }
-    .dots {
+    &-dots {
       position: absolute;
       right: 0;
       left: 0;
@@ -209,7 +212,7 @@
       transform: translateZ(1px);
       text-align: center;
       font-size: 0;
-      .dot {
+      > span {
         display: inline-block;
         margin: 0 4px; /*no*/
         width: 8px; /*no*/
