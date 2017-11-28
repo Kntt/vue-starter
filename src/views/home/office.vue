@@ -18,6 +18,7 @@
       <h3>visa</h3>
     </router-link>
     <mt-button type="primary" @click="showToast">Toast</mt-button>
+    <mt-button type="primary" @click="showAlert">Dialog</mt-button>
   </div>
 </template>
 
@@ -57,11 +58,39 @@ export default {
   },
   methods: {
     showToast () {
-      const toast = this.$createToast({
+      this.$createToast({
         time: 3000,
         txt: 'Toast time 1s'
-      })
-      toast.show()
+      }).show()
+    },
+    showAlert () {
+      this.$createDialog({
+        type: 'confirm',
+        title: '我是标题',
+        content: '我是内容',
+        confirmBtn: {
+          text: '确定按钮',
+          active: true,
+          href: 'javascript:;'
+        },
+        cancelBtn: {
+          text: '取消按钮',
+          active: false,
+          href: 'javascript:;'
+        },
+        onConfirm: () => {
+          this.$createToast({
+            time: 1000,
+            txt: '点击确认按钮'
+          }).show()
+        },
+        onCancel: () => {
+          this.$createToast({
+            time: 1000,
+            txt: '点击取消按钮'
+          }).show()
+        }
+      }).show()
     }
   }
 }
