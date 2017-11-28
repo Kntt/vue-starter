@@ -5,7 +5,7 @@
     </span>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
   const COMPONENT_NAME = 'loading'
 
   export default {

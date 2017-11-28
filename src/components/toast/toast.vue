@@ -7,7 +7,7 @@
     </popup>
   </transition>
 </template>
-<script type="text/ecmascript-6">
+<script>
   import Loading from '../loading/loading.vue'
   import Popup from '../popup/popup.vue'
   import apiMixin from '../common/mixins/api'
