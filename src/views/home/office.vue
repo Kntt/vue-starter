@@ -5,12 +5,12 @@
     </mt-header>
     <div class="slide-wrapper">
       <div class="slide-content">
-        <slide>
-          <div v-for="item in items">
+        <slide @change="changePage">
+          <slide-item v-for="(item, index) in items" :key="index" @click.native="clickHandle(item, index)">
             <a :href="item.linkUrl">
               <img :src="item.picUrl">
             </a>
-          </div>
+          </slide-item>
         </slide>
       </div>
     </div>
@@ -57,6 +57,12 @@ export default {
     }
   },
   methods: {
+    changePage (current) {
+      console.log('当前轮播图序号为:' + current)
+    },
+    clickHandle (item, index) {
+      console.log(item, index)
+    },
     showToast () {
       this.$createToast({
         time: 3000,
