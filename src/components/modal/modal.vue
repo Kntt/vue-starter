@@ -29,7 +29,7 @@
   </transition>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import Popup from '../popup/popup.vue'
   import apiMixin from '../common/mixins/api'
   const COMPONENT_NAME = 'modal'

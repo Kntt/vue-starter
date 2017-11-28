@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import apiMixin from '../common/mixins/api'
   const COMPONENT_NAME = 'popup'
   const EVENT_MASK_CLICK = 'mask-click'
