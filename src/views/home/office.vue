@@ -64,7 +64,7 @@ export default {
       }).show()
     },
     showAlert () {
-      this.$createDialog({
+      this.$createModal({
         type: 'confirm',
         title: '我是标题',
         content: '我是内容',

@@ -4,7 +4,7 @@ import container from './container'
 import slide from './slide'
 import popup from './popup'
 import toast from './toast'
-import dialog from './dialog'
+import modal from './modal'
 
 const components = [
   header,
@@ -12,7 +12,7 @@ const components = [
   slide,
   popup,
   toast,
-  dialog
+  modal
 ]
 
 const install = function (Vue) {

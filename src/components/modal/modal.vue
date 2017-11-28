@@ -1,26 +1,26 @@
 <template>
-  <transition name="dialog-fade">
-    <popup type="dialog" :mask="true" :center="true" v-show="isVisible">
-      <div class="dialog-main">
-        <span class="dialog-close" v-show="showClose" @click="close"><i class="cubeic-close"></i></span>
+  <transition name="modal-fade">
+    <popup type="modal" :mask="true" :center="true" v-show="isVisible">
+      <div class="modal-main">
+        <span class="modal-close" v-show="showClose" @click="close"><i class="cubeic-close"></i></span>
         <div :class="containerClass">
-          <p class="dialog-icon" v-if="icon"><i :class="icon"></i></p>
-          <h2 v-if="title || $slots.title" class="dialog-title">
+          <p class="modal-icon" v-if="icon"><i :class="icon"></i></p>
+          <h2 v-if="title || $slots.title" class="modal-title">
             <slot name="title">
-              <p class="dialog-title-def">{{title}}</p>
+              <p class="modal-title-def">{{title}}</p>
             </slot>
           </h2>
-          <div class="dialog-content">
+          <div class="modal-content">
             <slot name="content">
-              <div class="dialog-content-def">
+              <div class="modal-content-def">
                 <p v-html="content"></p>
               </div>
             </slot>
           </div>
-          <div class="dialog-btns" :class="{'border-right-1px': isConfirm}">
+          <div class="modal-btns" :class="{'border-right-1px': isConfirm}">
             <slot name="btns">
-              <a :href="_cancelBtn.href" class="dialog-btn border-top-1px" :class="{'dialog-btn_highlight': _cancelBtn.active}" v-if="isConfirm" @click="cancel">{{_cancelBtn.text}}</a>
-              <a :href="_confirmBtn.href" class="dialog-btn border-top-1px" :class="{'dialog-btn_highlight': _confirmBtn.active}" @click="confirm">{{_confirmBtn.text}}</a>
+              <a :href="_cancelBtn.href" class="modal-btn border-top-1px" :class="{'modal-btn_highlight': _cancelBtn.active}" v-if="isConfirm" @click="cancel">{{_cancelBtn.text}}</a>
+              <a :href="_confirmBtn.href" class="modal-btn border-top-1px" :class="{'modal-btn_highlight': _confirmBtn.active}" @click="confirm">{{_confirmBtn.text}}</a>
             </slot>
           </div>
         </div>
@@ -32,7 +32,7 @@
 <script type="text/ecmascript-6">
   import Popup from '../popup/popup.vue'
   import apiMixin from '../common/mixins/api'
-  const COMPONENT_NAME = 'dialog'
+  const COMPONENT_NAME = 'modal'
   const EVENT_CONFIRM = 'confirm'
   const EVENT_CANCEL = 'cancel'
   const EVENT_CLOSE = 'close'
@@ -112,7 +112,7 @@
         return this.type === 'confirm'
       },
       containerClass () {
-        return `dialog-${this.type}`
+        return `modal-${this.type}`
       }
     },
     methods: {
@@ -136,7 +136,7 @@
 </script>
 
 <style lang="less">
-  .dialog-main {
+  .modal-main {
     width: 270px;
     padding: 0;
     text-align: center;
@@ -144,11 +144,11 @@
     border-radius: 2px; /*no*/
     background-color: #fff;
   }
-  .dialog-confirm, .dialog-alert {
+  .modal-confirm, .modal-alert {
     position: relative;
     overflow: hidden;
   }
-  .dialog-icon {
+  .modal-icon {
     margin-top: 20px;
     margin-bottom: 16px;
     line-height: 1;
@@ -162,45 +162,45 @@
       border-radius: 50%;
       background-color: #f3f4f5;
     }
-    + .dialog-title {
-      .dialog-title-def {
+    + .modal-title {
+      .modal-title-def {
         margin-top: 0;
       }
     }
-    + .dialog-content {
+    + .modal-content {
       margin-top: -4px;
     }
   }
-  .dialog-title {
+  .modal-title {
     color: #333;
     font-size: 16px;
     line-height: 1;
-    + .dialog-content {
+    + .modal-content {
       margin-top: 12px;
     }
   }
-  .dialog-title-def {
+  .modal-title-def {
     margin: 30px 16px 0;
     overflow: hidden;
     white-space: nowrap;
   }
-  .dialog-content {
+  .modal-content {
     margin: 16px 0;
     text-align: left;
     color: #666;
     font-size: 14px;
     line-height: 22px;
   }
-  .dialog-content-def {
+  .modal-content-def {
     padding: 0 16px;
     > p {
       display: table;
       margin: auto;
     }
   }
-  .dialog-confirm {
-    .dialog-btns {
-      .dialog-btn {
+  .modal-confirm {
+    .modal-btns {
+      .modal-btn {
         width: 50%;
         float: left;
       }
@@ -215,7 +215,7 @@
   .icon-confirm {
     background-size: 262px 53px
   }
-  .dialog-close {
+  .modal-close {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,12 +228,12 @@
     color: #999;
     font-size: 18px;
   }
-  .dialog-btns {
+  .modal-btns {
     overflow: hidden;
     width: 100%;
     font-size: 0;
   }
-  .dialog-btn {
+  .modal-btn {
     display: inline-block;
     width: 100%;
     padding: 17px 10px;
@@ -250,25 +250,25 @@
       background-color: rgba(0, 0, 0, .04);
     }
   }
-  .dialog-btn_highlight {
+  .modal-btn_highlight {
     color: #4a4c5b;
     &:active {
       background-color: rgba(252, 145, 83, .04);
     }
   }
-  .dialog-btn_disabled {
+  .modal-btn_disabled {
     color: #999;
     &:active {
       background-color: transparent;
     }
   }
-  .dialog-fade-enter-active {
-    animation: dialog-fadein .4s;
-    .dialog-main {
-      animation: dialog-zoom .4s;
+  .modal-fade-enter-active {
+    animation: modal-fadein .4s;
+    .modal-main {
+      animation: modal-zoom .4s;
     }
   }
-  @keyframes dialog-fadein {
+  @keyframes modal-fadein {
     0% {
       opacity: 0 
     }
@@ -276,7 +276,7 @@
       opacity: 1 
     }
   }
-  @keyframes dialog-zoom {
+  @keyframes modal-zoom {
     0% {
       transform: scale(0)
     }
