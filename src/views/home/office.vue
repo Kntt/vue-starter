@@ -18,7 +18,7 @@
       <h3>visa</h3>
     </router-link>
     <mt-button type="primary" @click="showToast">Toast</mt-button>
-    <mt-button type="primary" @click="showAlert">Dialog</mt-button>
+    <mt-button type="primary" @click="showAlert">Modal</mt-button>
   </div>
 </template>
 
