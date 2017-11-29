@@ -7,6 +7,7 @@ import toast from './toast'
 import modal from './modal'
 import picker from './picker'
 import timePicker from './time-picker'
+import actionSheet from './action-sheet'
 
 const components = [
   header,
@@ -16,7 +17,8 @@ const components = [
   toast,
   modal,
   picker,
-  timePicker
+  timePicker,
+  actionSheet
 ]
 
 const install = function (Vue) {

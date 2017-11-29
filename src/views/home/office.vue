@@ -21,6 +21,7 @@
     <mt-button size="large" type="primary" @click="showAlert">Modal</mt-button>
     <mt-button size="large" type="primary" @click="showPicker">Picker</mt-button>
     <mt-button size="large" @click="showTimePicker" plain>TimePicker</mt-button>
+    <mt-button size="large" @click="showActionSheet" type="primary" plain>ActionSheet</mt-button>
   </div>
 </template>
 
@@ -141,6 +142,29 @@ export default {
           this.$createToast({
             type: 'correct',
             txt: 'Picker canceled',
+            time: 1000
+          }).show()
+        }
+      }).show()
+    },
+    showActionSheet () {
+      this.$createActionSheet({
+        title: '确认删除么？',
+        active: 0,
+        data: [
+          {
+            content: '删除'
+          }
+        ],
+        onSelect: (item, index) => {
+          this.$createToast({
+            txt: `Clicked ${item.content}`,
+            time: 1000
+          }).show()
+        },
+        onCancel: () => {
+          this.$createToast({
+            txt: `Clicked canceled`,
             time: 1000
           }).show()
         }
