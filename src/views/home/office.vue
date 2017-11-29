@@ -17,9 +17,10 @@
     <router-link to="/visa">
       <h3>visa</h3>
     </router-link>
-    <mt-button type="primary" @click="showToast">Toast</mt-button>
-    <mt-button type="primary" @click="showAlert">Modal</mt-button>
-    <mt-button type="primary" @click="showPicker">Picker</mt-button>
+    <mt-button size="large" type="primary" @click="showToast">Toast</mt-button>
+    <mt-button size="large" type="primary" @click="showAlert">Modal</mt-button>
+    <mt-button size="large" type="primary" @click="showPicker">Picker</mt-button>
+    <mt-button size="large" @click="showTimePicker" plain>TimePicker</mt-button>
   </div>
 </template>
 
@@ -102,12 +103,38 @@ export default {
     },
     showPicker () {
       this.$createPicker({
-        title: 'Picker选择器-单列',
+        title: '大爷，选一个吧',
         data: [this.colData],
         onSelect: (selectedText, selectedIndex) => {
           this.$createModal({
             type: 'warn',
             content: `选中的内容是：${selectedText.join(',')} <br/> 选中的索引是 ${selectedIndex.join(',')}`
+          }).show()
+        },
+        onCancel: () => {
+          this.$createToast({
+            type: 'correct',
+            txt: 'Picker canceled',
+            time: 1000
+          }).show()
+        }
+      }).show()
+    },
+    showTimePicker () {
+      this.$createTimePicker({
+        showNow: false,
+        minuteStep: 10,
+        delay: 10,
+        day: {
+          len: 35,
+          filter: ['今天', '明天'],
+          format: 'M月d日'
+        },
+        onSelect: (selectedTime, selectedText) => {
+          this.$createModal({
+            type: 'warn',
+            title: `选中的时间戳是 ${selectedTime}`,
+            content: `选中的内容是 ${selectedText}`
           }).show()
         },
         onCancel: () => {
