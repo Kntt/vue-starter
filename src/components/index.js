@@ -6,6 +6,7 @@ import popup from './popup'
 import toast from './toast'
 import modal from './modal'
 import picker from './picker'
+import timePicker from './time-picker'
 
 const components = [
   header,
@@ -14,7 +15,8 @@ const components = [
   popup,
   toast,
   modal,
-  picker
+  picker,
+  timePicker
 ]
 
 const install = function (Vue) {
