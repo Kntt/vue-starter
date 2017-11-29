@@ -19,6 +19,7 @@
     </router-link>
     <mt-button type="primary" @click="showToast">Toast</mt-button>
     <mt-button type="primary" @click="showAlert">Modal</mt-button>
+    <mt-button type="primary" @click="showPicker">Picker</mt-button>
   </div>
 </template>
 
@@ -53,7 +54,8 @@ export default {
           picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000002cwng4353HKz.jpg',
           id: 11287
         }
-      ]
+      ],
+      colData: [{ text: 'item1', value: '1' }, { text: 'item2', value: '2' }, { text: 'item3', value: '3' }]
     }
   },
   methods: {
@@ -94,6 +96,25 @@ export default {
           this.$createToast({
             time: 1000,
             txt: '点击取消按钮'
+          }).show()
+        }
+      }).show()
+    },
+    showPicker () {
+      this.$createPicker({
+        title: 'Picker选择器-单列',
+        data: [this.colData],
+        onSelect: (selectedText, selectedIndex) => {
+          this.$createModal({
+            type: 'warn',
+            content: `选中的内容是：${selectedText.join(',')} <br/> 选中的索引是 ${selectedIndex.join(',')}`
+          }).show()
+        },
+        onCancel: () => {
+          this.$createToast({
+            type: 'correct',
+            txt: 'Picker canceled',
+            time: 1000
           }).show()
         }
       }).show()
