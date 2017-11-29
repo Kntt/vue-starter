@@ -4,12 +4,19 @@ import parseRenderData from './parse-render-data'
 export default function createAPIComponent (Vue, Component, events = [], single = false) {
   let singleComponent
   let singleInstance
+  const beforeFns = []
   const api = {
+    before (fn) {
+      beforeFns.push(fn)
+    },
     open (data, renderFn, instanceSingle) {
       if (typeof renderFn !== 'function') {
         instanceSingle = renderFn
         renderFn = null
       }
+      beforeFns.forEach((before) => {
+        before(data, renderFn, instanceSingle)
+      })
       if (instanceSingle === undefined) {
         instanceSingle = single
       }
@@ -24,12 +31,12 @@ export default function createAPIComponent (Vue, Component, events = [], single 
       const originRemove = component.remove
 
       component.remove = function () {
-        if (instance.__finup__destroyed) {
+        if (instance.__cube__destroyed) {
           return
         }
         originRemove && originRemove.call(this)
         instance.destroy()
-        instance.__finup__destroyed = true
+        instance.__cube__destroyed = true
         if (instanceSingle) {
           singleComponent = null
           singleInstance = null
@@ -55,14 +62,14 @@ export default function createAPIComponent (Vue, Component, events = [], single 
     create (config, renderFn, single) {
       const ownerInstance = this
       const component = api.open(parseRenderData(config, events), renderFn, single)
-      if (component.__finup__parent !== ownerInstance) {
-        component.__finup__parent = ownerInstance
+      if (component.__cube__parent !== ownerInstance) {
+        component.__cube__parent = ownerInstance
         const beforeDestroy = function () {
-          if (component.__finup__parent === ownerInstance) {
+          if (component.__cube__parent === ownerInstance) {
             component.remove()
           }
           ownerInstance.$off('hook:beforeDestroy', beforeDestroy)
-          component.__finup__parent = null
+          component.__cube__parent = null
         }
         ownerInstance.$on('hook:beforeDestroy', beforeDestroy)
       }

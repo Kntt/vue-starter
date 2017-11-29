@@ -5,6 +5,7 @@ import slide from './slide'
 import popup from './popup'
 import toast from './toast'
 import modal from './modal'
+import picker from './picker'
 
 const components = [
   header,
@@ -12,7 +13,8 @@ const components = [
   slide,
   popup,
   toast,
-  modal
+  modal,
+  picker
 ]
 
 const install = function (Vue) {
