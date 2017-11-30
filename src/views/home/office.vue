@@ -15,6 +15,7 @@
       </div>
     </div>
     <router-link to="/visa">
+      <icon icon="more"/>
       <h3>visa</h3>
     </router-link>
     <mt-button size="large" type="primary" @click="showToast">Toast</mt-button>
