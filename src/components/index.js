@@ -8,6 +8,7 @@ import modal from './modal'
 import picker from './picker'
 import timePicker from './time-picker'
 import actionSheet from './action-sheet'
+import icon from './icon'
 
 const components = [
   header,
@@ -18,7 +19,8 @@ const components = [
   modal,
   picker,
   timePicker,
-  actionSheet
+  actionSheet,
+  icon
 ]
 
 const install = function (Vue) {
