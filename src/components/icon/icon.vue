@@ -1,5 +1,5 @@
 <template>
-  <svg class="icon">
+  <svg class="icon" :style="iconStyle">
     <use :xlink:href="iconName"></use>
   </svg>
 </template>
@@ -12,12 +12,26 @@
 const COMPONENT_NAME = 'icon'
 export default {
   name: COMPONENT_NAME,
-  props: [
-    'icon'
-  ],
+  props: {
+    icon: {
+      type: String,
+      require: true,
+      default: ''
+    },
+    size: {
+      type: [Number, String],
+      default: 24
+    }
+  },
   computed: {
     iconName () {
       return `#icon-${this.icon}`
+    },
+    iconStyle () {
+      return {
+        width: `${this.size}px`,
+        height: `${this.size}px`
+      }
     }
   }
 }
