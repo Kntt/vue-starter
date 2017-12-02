@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const svgoConfig = require('./svgo.config')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -49,11 +50,19 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-sprite-loader',
         include: [resolve('src/assets/icons')],
-        options: {
-          symbolId: 'icon-[name]'
-        }
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              symbolId: 'icon-[name]'
+            }
+          },
+          {
+            loader: 'svgo-loader',
+            options: svgoConfig
+          }
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
