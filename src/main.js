@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import store from './store'
 import * as utils from './utils/tool'
-import './mintUI'
 
 /* 全局样式 定义主题 */
 import './styles/index.less'
