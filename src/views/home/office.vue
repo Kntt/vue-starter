@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-header title="工作" fixed>
-      <x-button icon="more" slot="right"></x-button>
+      <x-button icon="add" slot="right"></x-button>
     </nav-header>
     <div class="slide-wrapper">
       <div class="slide-content">
