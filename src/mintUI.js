@@ -1,10 +1,9 @@
 /* ========================== mint-ui ============================ */
 import Vue from 'vue'
-import { Button, TabItem } from 'mint-ui'
+import { Button } from 'mint-ui'
 
 let components = [
-  Button,
-  TabItem
+  Button
 ]
 
 components.forEach(component => {
