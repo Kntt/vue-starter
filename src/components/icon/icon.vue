@@ -36,3 +36,12 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+  .icon {
+    display: inline-block;
+    fill: currentColor;
+    vertical-align: middle;
+    overflow: hidden;
+  }
+</style>
