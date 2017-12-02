@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-header title="打卡" fixed>
-      <mt-button @click="$router.back()" icon="back" slot="left"></mt-button>
+      <x-button @click="$router.back()" icon="arrow-left" slot="left"></x-button>
     </nav-header>
   </div>
 </template>
