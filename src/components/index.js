@@ -1,5 +1,6 @@
 import retina from './common/retina'
 import header from './header'
+import Tabbar from './tabbar'
 import container from './container'
 import slide from './slide'
 import popup from './popup'
@@ -12,6 +13,7 @@ import icon from './icon'
 
 const components = [
   header,
+  Tabbar,
   container,
   slide,
   popup,
