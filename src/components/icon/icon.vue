@@ -21,6 +21,10 @@ export default {
     size: {
       type: [Number, String],
       default: 24
+    },
+    color: {
+      type: String,
+      default: ''
     }
   },
   computed: {
@@ -30,7 +34,8 @@ export default {
     iconStyle () {
       return {
         width: `${this.size}px`,
-        height: `${this.size}px`
+        height: `${this.size}px`,
+        color: this.color
       }
     }
   }
