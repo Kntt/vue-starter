@@ -15,7 +15,7 @@
       </div>
     </div>
     <router-link to="/visa">
-      <icon icon="more"/>
+      <icon icon="other"/>
       <h3>visa</h3>
     </router-link>
     <x-button size="large" type="primary" @click="showToast">Toast</x-button>
@@ -189,5 +189,8 @@ export default {
     width: 100%;
     height: 100%;
   }
+}
+.x-button + .x-button {
+  margin-top: 10px;
 }
 </style>
