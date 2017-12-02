@@ -1,14 +1,14 @@
 <template>
   <header
-    class="mint-header border-bottom-1px"
+    class="nav-header border-bottom-1px"
     :class="{ 'is-fixed': fixed, 'is-ios': ios }">
-    <div class="mint-header-button is-left">
+    <div class="nav-header-button is-left">
       <slot name="left"></slot>
     </div>
-    <h1 class="mint-header-title">
+    <h1 class="nav-header-title">
       {{ title }}
     </h1>
-    <div class="mint-header-button is-right">
+    <div class="nav-header-button is-right">
       <slot name="right"></slot>
     </div>
   </header>
@@ -35,7 +35,7 @@ export default {
 
 <style lang="less">
   @import '../../styles/theme/default.less';
-  .mint {
+  .nav {
     &-header {
       align-items: center;
       background-color: @header-bgc;
@@ -87,6 +87,15 @@ export default {
         left: 0;
         position: fixed;
         z-index: 1;
+      }
+      &.is-ios{
+        height: 64px; /*no*/
+        /* Status bar height on iOS 10 */
+        padding-top: 20px; /*no*/
+        /* Status bar height on iOS 11.0 */
+        padding-top: constant(safe-area-inset-top);
+        /* Status bar height on iOS 11+ */
+        padding-top: env(safe-area-inset-top);
       }
     }
   }
