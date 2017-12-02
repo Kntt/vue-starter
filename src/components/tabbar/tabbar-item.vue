@@ -1,21 +1,23 @@
 <template>
-  <a class="mint-tab-item"
+  <a class="x-tab-item"
     @click="$parent.$emit('input', id)"
     :class="{ 'is-selected': $parent.value === id }">
-    <div class="mint-tab-item-icon"><slot name="icon"></slot></div>
-    <div class="mint-tab-item-label"><slot></slot></div>
+    <div class="x-tab-item-icon"><slot name="icon"></slot></div>
+    <div class="x-tab-item-label"><slot></slot></div>
   </a>
 </template>
 
 <script>
+const COMPONENT_NAME = 'tab-item'
+
 export default {
-  name: 'mt-tab-item',
+  name: COMPONENT_NAME,
   props: ['id']
 }
 </script>
 
 <style lang="less">
-  .mint {
+  .x {
     &-tab-item {
       display: block;
       padding: 7px 0 8px; /*no*/

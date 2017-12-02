@@ -1,5 +1,5 @@
 <template>
-  <div class="mint-tabbar" :class="{
+  <div class="x-tabbar" :class="{
       'is-fixed': fixed
     }">
     <slot></slot>
@@ -7,8 +7,10 @@
 </template>
 
 <script>
+const COMPONENT_NAME = 'tabbar'
+
 export default {
-  name: 'mt-tabbar',
+  name: COMPONENT_NAME,
   props: {
     fixed: Boolean,
     value: {}
@@ -18,7 +20,7 @@ export default {
 
 <style lang="less">
   @import '../../styles/theme/default.less';
-  .mint {
+  .x {
     &-tabbar {
       display: flex;
       position: absolute;
@@ -37,7 +39,7 @@ export default {
         left: 0;
         z-index: 1;
       }
-      > .mint-tab-item.is-selected {
+      > .x-tab-item.is-selected {
         background-color: #fff;
         color: @color-tabbar-active;
       }
