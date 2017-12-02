@@ -49,7 +49,7 @@ export default {
       position: relative;
       text-align: center;
       white-space: nowrap;
-      .mint-button {
+      .x-button {
         background-color: transparent;
         border: 0;
         box-shadow: none;
