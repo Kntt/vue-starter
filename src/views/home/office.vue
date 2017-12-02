@@ -18,11 +18,11 @@
       <icon icon="other"/>
       <h3>visa</h3>
     </router-link>
-    <x-button size="large" type="primary" @click="showToast">Toast</x-button>
-    <x-button size="large" type="primary" @click="showAlert">Modal</x-button>
-    <x-button size="large" type="primary" @click="showPicker">Picker</x-button>
-    <x-button size="large" @click="showTimePicker" plain>TimePicker</x-button>
-    <x-button size="large" @click="showActionSheet" type="primary" plain>ActionSheet</x-button>
+    <x-button size="large" type="primary" icon="correct-fill" @click="showToast">Toast</x-button>
+    <x-button size="large" type="primary" icon="tip-fill" @click="showAlert">Modal</x-button>
+    <x-button size="large" type="primary" icon="help-fill" @click="showPicker">Picker</x-button>
+    <x-button size="large" icon="qrcode" @click="showTimePicker" plain>TimePicker</x-button>
+    <x-button size="large" icon="scan" @click="showActionSheet" type="primary" plain>ActionSheet</x-button>
   </div>
 </template>
 
