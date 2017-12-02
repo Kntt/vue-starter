@@ -5,23 +5,23 @@
     </div>
     <tabbar v-model="active">
       <tab-item id="/office">
-        <img v-if="active === '/office'" slot="icon" src="../assets/logo.png">
-        <img v-else slot="icon" src="../assets/100x100.png">
+        <icon v-if="active === '/office'" slot="icon" color="#0b97ff" icon="office-fill"/>
+        <icon v-else slot="icon" icon="office"/>
         工作
       </tab-item>
       <tab-item id="/contacts">
-        <img v-if="active === '/contacts'" slot="icon" src="../assets/logo.png">
-        <img v-else slot="icon" src="../assets/100x100.png">
+        <icon v-if="active === '/contacts'" slot="icon" color="#0b97ff" icon="contacts-fill"/>
+        <icon v-else slot="icon" icon="contacts"/>
         通讯录
       </tab-item>
       <tab-item id="/message">
-        <img v-if="active === '/message'" slot="icon" src="../assets/logo.png">
-        <img v-else slot="icon" src="../assets/100x100.png">
+        <icon v-if="active === '/message'" slot="icon" color="#0b97ff" icon="message-fill"/>
+        <icon v-else slot="icon" icon="message"/>
         消息
       </tab-item>
       <tab-item id="/user">
-        <img v-if="active === '/user'" slot="icon" src="../assets/logo.png">
-        <img v-else slot="icon" src="../assets/100x100.png">
+        <icon v-if="active === '/user'" slot="icon" color="#0b97ff" icon="user-fill"/>
+        <icon v-else slot="icon" icon="user"/>
         我的
       </tab-item>
     </tabbar>

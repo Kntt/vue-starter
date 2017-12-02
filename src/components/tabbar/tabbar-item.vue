@@ -22,6 +22,7 @@ export default {
       display: block;
       padding: 7px 0 8px; /*no*/
       flex: 1;
+      color: #555;
       text-decoration: none;
       &-icon {
         width: 24px; /*no*/

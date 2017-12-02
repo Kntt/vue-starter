@@ -10,7 +10,7 @@
     :disabled="disabled">
     <span class="x-button-icon" v-if="icon || $slots.icon">
       <slot name="icon">
-        <icon v-if="icon" :icon="icon" size="16"/>
+        <icon v-if="icon" :icon="icon" size="21"/>
       </slot>
     </span>
     <label class="x-button-text"><slot></slot></label>
@@ -95,6 +95,9 @@ export default {
         font-size: 0;
         vertical-align: middle;
         display: inline-block;
+      }
+      &-text {
+        vertical-align: middle;
       }
       &--default {
         color: @button-default-color;
