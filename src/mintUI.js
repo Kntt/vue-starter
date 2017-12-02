@@ -1,9 +1,8 @@
 /* ========================== mint-ui ============================ */
 import Vue from 'vue'
-import { Header, Button, Tabbar, TabItem } from 'mint-ui'
+import { Button, Tabbar, TabItem } from 'mint-ui'
 
 let components = [
-  Header,
   Button,
   Tabbar,
   TabItem

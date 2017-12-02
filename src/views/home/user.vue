@@ -1,8 +1,8 @@
 <template>
   <div>
-    <mt-header title="我的" fixed>
+    <nav-header title="我的" fixed>
       <mt-button icon="add" slot="right"></mt-button>
-    </mt-header>
+    </nav-header>
   </div>
 </template>
 
