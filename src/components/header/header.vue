@@ -15,12 +15,10 @@
 </template>
 
 <script>
-/**
- * 重写Mini-UI Header 来实现更多自定义效果
- * 增加ios 增加顶部高度
- */
+const COMPONENT_NAME = 'nav-header'
+
 export default {
-  name: 'nav-header',
+  name: COMPONENT_NAME,
   props: {
     fixed: Boolean,
     title: String

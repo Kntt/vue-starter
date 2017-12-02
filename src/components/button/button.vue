@@ -19,8 +19,10 @@
 
 <script>
 import Icon from '../icon/icon.vue'
+
+const COMPONENT_NAME = 'x-button'
 export default {
-  name: 'x-button',
+  name: COMPONENT_NAME,
   methods: {
     handleClick (evt) {
       this.$emit('click', evt)
