@@ -1,8 +1,8 @@
 <template>
   <div>
     <nav-header title="通讯录" fixed>
-      <mt-button v-if="currentNode" @click="back" icon="back" slot="left"></mt-button>
-      <mt-button icon="more" slot="right"></mt-button>
+      <x-button v-if="currentNode" @click="back" icon="arrow-left" slot="left"></x-button>
+      <x-button icon="more" slot="right"></x-button>
     </nav-header>
     <container :data="data">
       <ul class="contacts-list">

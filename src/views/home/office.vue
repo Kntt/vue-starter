@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-header title="工作" fixed>
-      <mt-button icon="more" slot="right"></mt-button>
+      <x-button icon="more" slot="right"></x-button>
     </nav-header>
     <div class="slide-wrapper">
       <div class="slide-content">
@@ -18,11 +18,11 @@
       <icon icon="more"/>
       <h3>visa</h3>
     </router-link>
-    <mt-button size="large" type="primary" @click="showToast">Toast</mt-button>
-    <mt-button size="large" type="primary" @click="showAlert">Modal</mt-button>
-    <mt-button size="large" type="primary" @click="showPicker">Picker</mt-button>
-    <mt-button size="large" @click="showTimePicker" plain>TimePicker</mt-button>
-    <mt-button size="large" @click="showActionSheet" type="primary" plain>ActionSheet</mt-button>
+    <x-button size="large" type="primary" @click="showToast">Toast</x-button>
+    <x-button size="large" type="primary" @click="showAlert">Modal</x-button>
+    <x-button size="large" type="primary" @click="showPicker">Picker</x-button>
+    <x-button size="large" @click="showTimePicker" plain>TimePicker</x-button>
+    <x-button size="large" @click="showActionSheet" type="primary" plain>ActionSheet</x-button>
   </div>
 </template>
 

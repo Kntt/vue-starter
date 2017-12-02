@@ -1,26 +1,26 @@
 <template>
   <button
     :type="nativeType"
-    class="mint-button"
-    :class="['mint-button--' + type, 'mint-button--' + size, {
+    class="x-button"
+    :class="['x-button--' + type, 'x-button--' + size, {
       'is-disabled': disabled,
       'is-plain': plain
     }]"
     @click="handleClick"
     :disabled="disabled">
-    <span class="mint-button-icon" v-if="icon || $slots.icon">
+    <span class="x-button-icon" v-if="icon || $slots.icon">
       <slot name="icon">
         <icon v-if="icon" :icon="icon" size="16"/>
       </slot>
     </span>
-    <label class="mint-button-text"><slot></slot></label>
+    <label class="x-button-text"><slot></slot></label>
   </button>
 </template>
 
 <script>
 import Icon from '../icon/icon.vue'
 export default {
-  name: 'mt-button',
+  name: 'x-button',
   methods: {
     handleClick (evt) {
       this.$emit('click', evt)
@@ -62,7 +62,7 @@ export default {
 
 <style lang="less">
   @import '../../styles/theme/default.less';
-  .mint {
+  .x {
     &-button {
       appearance: none;
       border-radius: 4px; /*no*/

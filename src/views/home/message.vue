@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-header title="消息" fixed>
-      <mt-button icon="add" slot="right"></mt-button>
+      <x-button icon="message" slot="right"></x-button>
     </nav-header>
   </div>
 </template>
