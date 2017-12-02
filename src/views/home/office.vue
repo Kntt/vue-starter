@@ -1,8 +1,8 @@
 <template>
   <div>
-    <mt-header title="工作" fixed>
-      <mt-button icon="add" slot="right"></mt-button>
-    </mt-header>
+    <nav-header title="工作" fixed>
+      <mt-button icon="more" slot="right"></mt-button>
+    </nav-header>
     <div class="slide-wrapper">
       <div class="slide-content">
         <slide @change="changePage">

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <mt-header title="通讯录" fixed>
+    <nav-header title="通讯录" fixed>
       <mt-button v-if="currentNode" @click="back" icon="back" slot="left"></mt-button>
       <mt-button icon="more" slot="right"></mt-button>
-    </mt-header>
+    </nav-header>
     <container :data="data">
       <ul class="contacts-list">
         <li @click="itemClick(item, index)" class="contacts-item border-bottom-1px" v-for="item, index in data">
