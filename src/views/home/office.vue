@@ -70,6 +70,7 @@ export default {
     },
     showToast () {
       this.$createToast({
+        type: 'correct',
         time: 3000,
         txt: 'Toast time 1s'
       }).show()

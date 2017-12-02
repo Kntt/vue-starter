@@ -94,8 +94,7 @@
   .toast-icon {
     width: 24px; /*no*/
     height: 24px; /*no*/
-    font-size: 30px; /*no*/
-    color: '#ccc';
+    color: #ccc;
   }
   .toast-tip {
     line-height: 20px; /*no*/
