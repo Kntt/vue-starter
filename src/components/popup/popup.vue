@@ -60,6 +60,7 @@
     top: 0;
     bottom: 0;
     z-index: 100;
+    user-select: none;
   }
   .popup-mask, .popup-container {
     position: absolute;

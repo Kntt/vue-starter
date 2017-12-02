@@ -1,6 +1,7 @@
 <template>
   <div>
     <nav-header title="工作" fixed>
+      <x-button icon="scan" slot="left"></x-button>
       <x-button icon="add" slot="right"></x-button>
     </nav-header>
     <div class="slide-wrapper">
@@ -190,7 +191,7 @@ export default {
     height: 100%;
   }
 }
-.x-button + .x-button {
-  margin-top: 10px;
-}
+// .x-button + .x-button {
+//   margin-top: 10px;
+// }
 </style>
