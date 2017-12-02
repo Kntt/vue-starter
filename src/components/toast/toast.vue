@@ -1,7 +1,7 @@
 <template>
   <transition name="toast-fade">
     <popup type="toast" :mask="mask" v-show="isVisible">
-      <i v-show="!isLoading" class="toast-icon" :class="iconClass"></i>
+      <icon v-show="!isLoading" class="toast-icon" :icon="iconName"></icon>
       <loading v-show="isLoading"></loading>
       <div v-show="txt" class="toast-tip">{{txt}}</div>
     </popup>
@@ -10,6 +10,7 @@
 <script>
   import Loading from '../loading/loading.vue'
   import Popup from '../popup/popup.vue'
+  import Icon from '../icon/icon.vue'
   import apiMixin from '../common/mixins/api'
 
   const COMPONENT_NAME = 'toast'
@@ -36,18 +37,13 @@
       }
     },
     computed: {
-      iconClass () {
-        const iconClass = {}
+      iconName () {
         const classMap = {
-          correct: 'icon-right',
-          error: 'icon-wrong',
-          warn: 'icon-warn'
+          correct: 'correct-fill',
+          error: 'close-fill',
+          warn: 'tip-fill'
         }
-        const icon = classMap[this.type]
-        if (icon) {
-          iconClass[icon] = true
-        }
-        return iconClass
+        return classMap[this.type] || ''
       },
       isLoading () {
         return this.type === 'loading'
@@ -76,7 +72,8 @@
     },
     components: {
       Popup,
-      Loading
+      Loading,
+      Icon
     }
   }
 </script>
@@ -98,6 +95,7 @@
     width: 24px; /*no*/
     height: 24px; /*no*/
     font-size: 30px; /*no*/
+    color: '#ccc';
   }
   .toast-tip {
     line-height: 20px; /*no*/
