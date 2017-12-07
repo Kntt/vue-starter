@@ -2,7 +2,7 @@
   <div>
     <nav-header title="工作" fixed>
       <x-button icon="scan" slot="left"></x-button>
-      <x-button icon="add" slot="right"></x-button>
+      <x-button icon="add" @click="showDropdown" ref="menu" slot="right"></x-button>
     </nav-header>
     <div class="slide-wrapper">
       <div class="slide-content">
@@ -168,6 +168,32 @@ export default {
         onCancel: () => {
           this.$createToast({
             txt: `Clicked canceled`,
+            time: 1000
+          }).show()
+        }
+      }).show()
+    },
+    showDropdown () {
+      this.$createDropdown({
+        target: this.$refs.menu,
+        // active: 0,
+        data: [
+          {
+            content: '我的',
+            icon: 'correct'
+          },
+          {
+            content: '你的',
+            icon: 'tip'
+          },
+          {
+            content: '删除',
+            icon: 'close'
+          }
+        ],
+        onSelect: (item, index) => {
+          this.$createToast({
+            txt: `Clicked ${item.content}`,
             time: 1000
           }).show()
         }

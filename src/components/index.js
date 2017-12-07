@@ -10,6 +10,7 @@ import modal from './modal'
 import picker from './picker'
 import timePicker from './time-picker'
 import actionSheet from './action-sheet'
+import Dropdown from './dropdown'
 import icon from './icon'
 
 const components = [
@@ -24,6 +25,7 @@ const components = [
   picker,
   timePicker,
   actionSheet,
+  Dropdown,
   icon
 ]
 
