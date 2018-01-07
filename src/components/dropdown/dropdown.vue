@@ -16,7 +16,9 @@
                 v-for="(item, index) in data"
                 :class="[index === active ? 'dropdown-item_active': '']"
                 @click="itemClick(item, index)">
-                  <icon size="20" :icon="item.icon"/>
+                  <span class="dropdown-item-icon" v-if="item.icon">
+                    <icon :icon="item.icon" size="19"/>
+                  </span>
                   <label class="dropdown-item-text" v-text="item.content"></label>
                 </li>
             </ul>
@@ -132,8 +134,13 @@
       &_active {
         color: #0B97FF;
       }
+      &-icon {
+        display: inline-block;
+        font-size: 0;
+        vertical-align: middle;
+      }
       &-text {
-        line-height: 20px; /*no*/
+        font-size: 16px; /*no*/
         vertical-align: middle;
       }
     }

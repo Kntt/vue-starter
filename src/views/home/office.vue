@@ -19,7 +19,7 @@
       <icon icon="other"/>
       <h3>visa</h3>
     </router-link>
-    <x-button size="large" type="primary" icon="correct-fill" @click="showToast">Toast</x-button>
+    <x-button size="large" type="primary" icon="correct-fill" @click="showToast">我的Toast</x-button>
     <x-button size="large" type="primary" icon="tip-fill" @click="showAlert">Modal</x-button>
     <x-button size="large" type="primary" icon="help-fill" @click="showPicker">Picker</x-button>
     <x-button size="large" icon="qrcode" @click="showTimePicker" plain>TimePicker</x-button>
@@ -176,7 +176,7 @@ export default {
     showDropdown () {
       this.$createDropdown({
         target: this.$refs.menu,
-        // active: 0,
+        active: 0,
         data: [
           {
             content: '我的',
