@@ -217,7 +217,7 @@ export default {
     height: 100%;
   }
 }
-// .x-button + .x-button {
-//   margin-top: 10px;
-// }
+.x-button + .x-button {
+  margin-top: 10px;
+}
 </style>

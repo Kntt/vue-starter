@@ -10,7 +10,7 @@
     :disabled="disabled">
     <span class="x-button-icon" v-if="icon || $slots.icon">
       <slot name="icon">
-        <icon v-if="icon" :icon="icon" size="21"/>
+        <icon :icon="icon" size="21"/>
       </slot>
     </span>
     <label class="x-button-text"><slot></slot></label>
