@@ -24,6 +24,7 @@
     <x-button size="large" type="primary" icon="help-fill" @click="showPicker">Picker</x-button>
     <x-button size="large" icon="qrcode" @click="showTimePicker" plain>TimePicker</x-button>
     <x-button size="large" icon="scan" @click="showActionSheet" type="primary" plain>ActionSheet</x-button>
+    <x-button size="large" icon="scan" @click="showImageCrop" type="primary" plain>imageCrop</x-button>
   </div>
 </template>
 
@@ -145,6 +146,22 @@ export default {
           this.$createToast({
             type: 'correct',
             txt: 'Picker canceled',
+            time: 1000
+          }).show()
+        }
+      }).show()
+    },
+    showImageCrop () {
+      this.$createImageCrop({
+        onConfirm: (item, index) => {
+          this.$createToast({
+            txt: `Clicked ${item.content}`,
+            time: 1000
+          }).show()
+        },
+        onCancel: () => {
+          this.$createToast({
+            txt: `Clicked canceled`,
             time: 1000
           }).show()
         }
