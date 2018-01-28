@@ -45,8 +45,8 @@
 ## 快速开始
 
 ```bash
-    git clone https://github.com/hanan198501/vue-spa-template.git 
-    cd vue-spa-template
+    git clone https://github.com/Kntt/vue-starter
+    cd vue-starter
     cnpm install
     npm run dev
 ```
