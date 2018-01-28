@@ -24,7 +24,7 @@
     <x-button size="large" type="primary" icon="help-fill" @click="showPicker">Picker</x-button>
     <x-button size="large" icon="qrcode" @click="showTimePicker" plain>TimePicker</x-button>
     <x-button size="large" icon="scan" @click="showActionSheet" type="primary" plain>ActionSheet</x-button>
-    <x-button size="large" icon="scan" @click="showImageCrop" type="primary" plain>imageCrop</x-button>
+    <input type="file" @change="fileChange">
   </div>
 </template>
 
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     changePage (current) {
-      console.log('当前轮播图序号为:' + current)
+      // console.log('当前轮播图序号为:' + current)
     },
     clickHandle (item, index) {
       console.log(item, index)
@@ -151,22 +151,6 @@ export default {
         }
       }).show()
     },
-    showImageCrop () {
-      this.$createImageCrop({
-        onConfirm: (item, index) => {
-          this.$createToast({
-            txt: `Clicked ${item.content}`,
-            time: 1000
-          }).show()
-        },
-        onCancel: () => {
-          this.$createToast({
-            txt: `Clicked canceled`,
-            time: 1000
-          }).show()
-        }
-      }).show()
-    },
     showActionSheet () {
       this.$createActionSheet({
         title: '确认删除么？',
@@ -211,6 +195,24 @@ export default {
         onSelect: (item, index) => {
           this.$createToast({
             txt: `Clicked ${item.content}`,
+            time: 1000
+          }).show()
+        }
+      }).show()
+    },
+    fileChange (e) {
+      let file = e.target.files[0]
+      this.$createImageCrop({
+        img: file,
+        onConfirm: (item, index) => {
+          this.$createToast({
+            txt: `Clicked ${item.content}`,
+            time: 1000
+          }).show()
+        },
+        onCancel: () => {
+          this.$createToast({
+            txt: `Clicked canceled`,
             time: 1000
           }).show()
         }

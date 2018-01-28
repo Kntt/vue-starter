@@ -8,8 +8,9 @@
       @touchmove.prevent="noop"
       @click="cancel">
       <transition name="image-crop-move">
-        <div class="image-crop-panel" v-show="isVisible" @click.stop="noop">
-          <canvas ref="cover" :width="coverWidth" :height="coverHeight" :style="style"></canvas>
+        <div class="image-crop-panel" v-show="isVisible" @click.stop="noop" :style="style">
+          <img ref="image" :src="imageSource" @load="imageOnload" :style="imgStyle">
+          <canvas ref="cover" :width="coverWidth" :height="coverHeight" :style="coverStyle"></canvas>
           <div class="image-crop-btns border-top-1px">
             <a :href="_cancelBtn.href" class="image-crop-btn" :class="{'btn_highlight': _cancelBtn.active}" @click="cancel">{{_cancelBtn.text}}</a>
             <a :href="_confirmBtn.href" class="image-crop-btn" :class="{'btn_highlight': _confirmBtn.active}" @click="confirm">{{_confirmBtn.text}}</a>
@@ -50,12 +51,23 @@
     mixins: [apiMixin],
     props: {
       width: {
-        type: Number,
+        type: [Number, String],
         default: 300
       },
       height: {
-        type: Number,
+        type: [Number, String],
         default: 300
+      },
+      img: {
+        type: [File, String]
+      },
+      circle: {
+        type: Boolean,
+        default: false
+      },
+      output: {
+        type: [Number, String],
+        default: 2
       },
       confirmBtn: {
         type: [Object, String],
@@ -76,6 +88,9 @@
     },
     data () {
       return {
+        imageSource: '',
+        imageWidth: 0,
+        imageHeight: 0,
         coverWidth: window.innerWidth,
         coverHeight: window.innerHeight
       }
@@ -122,6 +137,23 @@
           ctx.rect(w / 2 - cw / 2, h / 2 - ch / 2, cw, ch)
         }
         ctx.stroke()
+      },
+      imageOnload () {
+        let imageElement = this.$refs.image
+        this.imageWidth = imageElement.width
+        this.imageHeight = imageElement.height
+        this.renderCover()
+      },
+      setSourceImg () {
+        if (typeof this.img === 'object') {
+          let fr = new FileReader()
+          fr.onload = (e) => {
+            this.imageSource = fr.result
+          }
+          fr.readAsDataURL(this.img)
+        } else {
+          this.imageSource = this.img
+        }
       }
     },
     computed: {
@@ -132,11 +164,34 @@
         return parseBtn(this.cancelBtn, defCancelBtn)
       },
       style () {
-        return `width:${this.coverWidth}px;height:${this.coverHeight}px;z-index:100`
+        return {
+          width: `${this.coverWidth}px`,
+          height: `${this.coverHeight}px`
+        }
+      },
+      coverStyle () {
+        return {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: `${this.coverWidth}px`,
+          height: `${this.coverHeight}px`,
+          zIndex: 100
+        }
+      },
+      imgStyle () {
+        return {
+          position: 'fixed',
+          zIndex: 99,
+          left: '50%',
+          top: `${this.coverHeight / 2}px`,
+          marginLeft: `${this.imageWidth / -2}px`,
+          marginTop: `${this.imageHeight / -2}px`
+        }
       }
     },
-    mounted () {
-      this.renderCover()
+    updated () {
+      this.setSourceImg()
     },
     components: {
       Popup
