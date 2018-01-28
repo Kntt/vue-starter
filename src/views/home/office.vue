@@ -207,20 +207,22 @@ export default {
     },
     fileChange (e) {
       let file = e.target.files[0]
-      this.$createImageCrop({
-        img: file,
-        onConfirm: (base64, Blob) => {
-          this.iconList.push(1) // 刷新滚动容器
-          this.cropImg = base64
-          console.log(Blob)
-        },
-        onCancel: () => {
-          this.$createToast({
-            txt: `Clicked canceled`,
-            time: 1000
-          }).show()
-        }
-      }).show()
+      if (file) {
+        this.$createImageCrop({
+          img: file,
+          onConfirm: (base64, Blob) => {
+            this.iconList.push(1) // 刷新滚动容器
+            this.cropImg = base64
+            console.log(Blob)
+          },
+          onCancel: () => {
+            this.$createToast({
+              txt: `Clicked canceled`,
+              time: 1000
+            }).show()
+          }
+        }).show()
+      }
     }
   }
 }
