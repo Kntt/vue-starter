@@ -4,27 +4,30 @@
       <x-button icon="scan" slot="left"></x-button>
       <x-button icon="add" @click="showDropdown" ref="menu" slot="right"></x-button>
     </nav-header>
-    <div class="slide-wrapper">
-      <div class="slide-content">
-        <slide @change="changePage">
-          <slide-item v-for="(item, index) in items" :key="index" @click.native="clickHandle(item, index)">
-            <a :href="item.linkUrl">
-              <img :src="item.picUrl">
-            </a>
-          </slide-item>
-        </slide>
+    <container :data="iconList">
+      <div class="slide-wrapper">
+        <div class="slide-content">
+          <slide @change="changePage">
+            <slide-item v-for="(item, index) in items" :key="index" @click.native="clickHandle(item, index)">
+              <a :href="item.linkUrl">
+                <img :src="item.picUrl">
+              </a>
+            </slide-item>
+          </slide>
+        </div>
       </div>
-    </div>
-    <router-link to="/visa">
-      <icon icon="other"/>
-      <h3>visa</h3>
-    </router-link>
-    <x-button size="large" type="primary" icon="correct-fill" @click="showToast">我的Toast</x-button>
-    <x-button size="large" type="primary" icon="tip-fill" @click="showAlert">Modal</x-button>
-    <x-button size="large" type="primary" icon="help-fill" @click="showPicker">Picker</x-button>
-    <x-button size="large" icon="qrcode" @click="showTimePicker" plain>TimePicker</x-button>
-    <x-button size="large" icon="scan" @click="showActionSheet" type="primary" plain>ActionSheet</x-button>
-    <input type="file" @change="fileChange">
+      <router-link to="/visa">
+        <icon icon="other"/>
+        <h3>visa</h3>
+      </router-link>
+      <x-button size="large" type="primary" icon="correct-fill" @click="showToast">我的Toast</x-button>
+      <x-button size="large" type="primary" icon="tip-fill" @click="showAlert">Modal</x-button>
+      <x-button size="large" type="primary" icon="help-fill" @click="showPicker">Picker</x-button>
+      <x-button size="large" icon="qrcode" @click="showTimePicker" plain>TimePicker</x-button>
+      <x-button size="large" icon="scan" @click="showActionSheet" type="primary" plain>ActionSheet</x-button>
+      <input type="file" @change="fileChange">
+      <img :src="cropImg">
+    </container>
   </div>
 </template>
 
@@ -33,6 +36,8 @@ export default {
   name: 'office',
   data () {
     return {
+      iconList: [],
+      cropImg: '',
       items: [
         {
           linkUrl: 'javascript:;',
@@ -204,11 +209,10 @@ export default {
       let file = e.target.files[0]
       this.$createImageCrop({
         img: file,
-        onConfirm: (item, index) => {
-          this.$createToast({
-            txt: `Clicked ${item.content}`,
-            time: 1000
-          }).show()
+        onConfirm: (base64, Blob) => {
+          this.iconList.push(1) // 刷新滚动容器
+          this.cropImg = base64
+          console.log(Blob)
         },
         onCancel: () => {
           this.$createToast({
