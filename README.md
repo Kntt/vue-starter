@@ -5,7 +5,7 @@
 - 增加版本控制脚本```version.js```，控制发布版本
 - 增加mock配置， 方便前后端分离开发
 - 使用```husky```，处理precommit，保证提交前代码lint，eslint可以根据个人或团队规范自行制定
-- 移动端，扩展了flexible.js, 配合px2rem 使用rem适配[需要请查看mobile-app分支]
+- 移动端，扩展了flexible.js, 配合px2rem 使用rem适配[需要请查看app分支](https://github.com/Kntt/vue-starter/tree/app)
 
 ## 目录结构
 
