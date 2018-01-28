@@ -136,6 +136,7 @@
         let h = cover.height
         let cw = this.width
         let ch = this.height
+        ctx.clearRect(0, 0, w, h)
         ctx.save()
         ctx.fillStyle = 'black'
         ctx.globalAlpha = 0.7
